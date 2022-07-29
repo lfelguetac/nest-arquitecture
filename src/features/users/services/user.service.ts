@@ -7,6 +7,10 @@ import { User } from '../datalayer/user.model';
 export class UserServiceImpl implements UserService {
   
   constructor(@Inject("UserRepository") private readonly userRepository: UserRepository) {}
+  
+  getUserBy(id: number): User {
+    return this.userRepository.getUserById(id);
+  }
 
   getUsers(): User[] {
     return this.userRepository.getUsers();

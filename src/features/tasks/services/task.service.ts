@@ -10,11 +10,7 @@ export class TaskServiceImpl implements TaskService {
   constructor(@Inject('TaskRepository') private taskRepo: TaskRepository){}
 
   getTask(taskID: number) : Task {
-    try {
       return this.taskRepo.getTaskBy(taskID)
-    } catch (error) {
-      console.log(error);
-    }
   }
 
   getTasks() : Task[] {

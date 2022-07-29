@@ -3,10 +3,11 @@ import { Request } from 'express';
 import { TaskService } from '../contract/services';
 
 type ParamsOne = {
-  ID: number;
+  id: number;
 }
 
-@Controller({ path: 'task' })
+
+@Controller({ path: 'tasks' })
 export class TaskController {
 
   constructor(@Inject('TaskService') private taskService: TaskService) {}
@@ -21,7 +22,7 @@ export class TaskController {
     
     try {
       const params = req.params as unknown as ParamsOne
-      const task = this.taskService.getTask(Number(params.ID));
+      const task = this.taskService.getTask(Number(params.id));
       return {
         ok: true,
         data: task
