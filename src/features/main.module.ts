@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { MONGO_DB_URL } from 'src/config/config-mongo';
 import { TaskModule } from './tasks/task.module';
 import { UserModule } from './users/user.module';
 
@@ -7,7 +8,8 @@ import { UserModule } from './users/user.module';
   imports: [
     UserModule, 
     TaskModule,
-    MongooseModule.forRoot('mongodb+srv://all:Z24637O9fsWvj08R@db-mongodb-nyc3-72294-e1b99681.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=db-mongodb-nyc3-72294'),
+    MongooseModule.forRoot(MONGO_DB_URL),
   ],
 })
 export class MainModule {}
+
