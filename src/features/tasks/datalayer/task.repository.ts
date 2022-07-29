@@ -1,39 +1,48 @@
 import { Injectable } from "@nestjs/common"
-import mongoose from "mongoose"
+import { InjectModel } from "@nestjs/mongoose"
+import { log } from "console"
+import mongoose, { Model } from "mongoose"
 import { TaskRepository } from "../contract/repository"
-import { Task, TaskSchema } from "./task.model"
+import { task, TaskDocument, TaskSchema } from "./task.model"
 
   
-const task: Task[] = [
-    {ID: 1, Description: 'Lavar la loza', HHEstimated: 0.5},
-    {ID: 2, Description: 'Dejar niño al cole', HHEstimated: 1.5},
-    {ID: 3, Description: 'Cocinar', HHEstimated: 1},
-]
+// const task = [
+//     {ID: 1, Description: 'Lavar la loza', HHEstimated: 0.5},
+//     {ID: 2, Description: 'Dejar niño al cole', HHEstimated: 1.5},
+//     {ID: 3, Description: 'Cocinar', HHEstimated: 1},
+// ]
 
   
 @Injectable()
 export class TaskRepositoryImpl implements TaskRepository {
 
+    constructor(@InjectModel(task.name) private taskModel: Model<TaskDocument>) {}
+
     getAllTasks() {
         
+        console.log("paso x aqui");
+        
         (async () => {
-        try {
-            const task = mongoose.model("task", TaskSchema)
-            const tareas = task.find()
-            console.log('tareas: ', await tareas);
-            
-        } catch (error) {
-            console.log(error);
-            
-        }
-
+            try {
+                console.log("aqui");
+                
+                // const task = mongoose.model("task", TaskSchema)
+                // const tareas = await task.find()
+                const tasks = await this.taskModel.find()
+                console.log('tareas: ',  tasks);
+                
+                
+            } catch (error) {
+                console.log(error);
+            }
         })()
 
-        return task
+        return []
     }
 
-    getTaskBy(id: number): Task {
-        return task.find(t => t.ID === id)
+    getTaskBy(id: number): task {
+        // return task.find(t => t.ID === id)
+        return undefined
     }
 
 }
