@@ -5,9 +5,10 @@ import { User } from '../datalayer/user.model';
 
 @Injectable()
 export class UserServiceImpl implements UserService {
-  
-  constructor(@Inject("UserRepository") private readonly userRepository: UserRepository) {}
-  
+  constructor(
+    @Inject('UserRepository') private readonly userRepository: UserRepository,
+  ) {}
+
   getUserBy(id: number): User {
     return this.userRepository.getUserById(id);
   }
@@ -15,7 +16,4 @@ export class UserServiceImpl implements UserService {
   getUsers(): User[] {
     return this.userRepository.getUsers();
   }
-  
-
 }
-

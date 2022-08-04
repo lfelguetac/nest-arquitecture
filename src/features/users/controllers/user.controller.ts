@@ -4,25 +4,23 @@ import { UserService } from '../contract/services';
 
 type ParamsOne = {
   id: number;
-}
+};
 
 @Controller({ path: 'users' })
 export class UserController {
+  constructor(
+    @Inject('UserService') private readonly userService: UserService,
+  ) {}
 
-  constructor(@Inject("UserService") private readonly userService: UserService) {}
-
-  @Get("/all")
+  @Get('/all')
   getUsers() {
-    return this.userService.getUsers()
+    return this.userService.getUsers();
   }
 
-
-  @Get("/:id")
+  @Get('/:id')
   getUserId(@Req() req: Request) {
-    const params = req.params as unknown as ParamsOne
-    console.log(params)
-    return this.userService.getUserBy(Number(params.id))
+    const params = req.params as unknown as ParamsOne;
+    console.log(params);
+    return this.userService.getUserBy(Number(params.id));
   }
-
-
 }

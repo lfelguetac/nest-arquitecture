@@ -1,5 +1,5 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 
 export type TaskDocument = task & Document;
 
@@ -9,26 +9,22 @@ export type TaskDocument = task & Document;
 //     HHEstimated: number
 // }
 
-
 @Schema()
 export class task {
+  @Prop()
+  ID: string;
 
-    @Prop()
-    ID: string;
+  @Prop()
+  Description: string;
 
-    @Prop()
-    Description: string;
-
-    @Prop()
-    HHEstimated: number;
+  @Prop()
+  HHEstimated: number;
 }
-
 
 // export const TaskSchema = new mongoose.Schema({
 //     ID: String,
 //     Description: Number,
 //     HHEstimated: String,
 // });
-
 
 export const TaskSchema = SchemaFactory.createForClass(task);
