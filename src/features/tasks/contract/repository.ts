@@ -1,6 +1,6 @@
-import { task } from "../datalayer/task.model"
+import { task } from '../datalayer/task.model';
 
 export interface TaskRepository {
-    getTaskBy(id: number): task
-    getAllTasks(): task[]
+  getTaskBy(id: number): task;
+  getAllTasks(): task[];
 }

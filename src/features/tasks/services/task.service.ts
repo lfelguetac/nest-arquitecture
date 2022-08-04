@@ -3,18 +3,15 @@ import { TaskRepository } from '../contract/repository';
 import { TaskService } from '../contract/services';
 import { task } from '../datalayer/task.model';
 
-
 @Injectable()
 export class TaskServiceImpl implements TaskService {
+  constructor(@Inject('TaskRepository') private taskRepo: TaskRepository) {}
 
-  constructor(@Inject('TaskRepository') private taskRepo: TaskRepository){}
-
-  getTask(taskID: number) : task {
-      return this.taskRepo.getTaskBy(taskID)
+  getTask(taskID: number): task {
+    return this.taskRepo.getTaskBy(taskID);
   }
 
-  getTasks() : task[] {
+  getTasks(): task[] {
     return this.taskRepo.getAllTasks();
   }
-
 }
